@@ -1,0 +1,43 @@
+<%- include('layouts/header') %>
+
+    <div class = "container px-5 my-5">
+        <div class = "row">
+            <div class = "col-md-3"></div>
+            <div class = "col-md-6">
+                <h1 class = "text-center text-black mb-4">Editar Componente (<%= component.name %>)</h1>
+                <form id = "add-form" action="/update/<%= component._id %>" method="POST" enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Nombre del artículo</label>
+                        <input class="form-control" value="<%= component.name %>" name="name" type= "text" placeholder="Nombre"></input>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Descripción</label>
+                        <textarea class="form-control" name="description" id="description" rows="3"><%= component.description %></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="amount">Cantidad</label>
+                        <input class="form-control" value="<%= component.amount %>" name="amount" type= "number" min= "0" placeholder="Cantidad Disponible"></input>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="price">Precio</label>
+                        <input class="form-control" value="<%= component.price %>" name="price" type= "number" step="0.01" min="0" placeholder="Precio"></input>
+
+                    <div class="mb-3">
+                        <label for="image" class=""form-label>Imagen</label>
+                        <input name="image" class="form-control" type="file"></input>
+                        <img src="/<%= component.image %>" width="100" class="img-thumbnail mt-1">
+                    </div>
+
+                    <input type="hidden" name="old_image" value="<%= component.image %>"></input>
+                    <div class="d-grid">
+                        <input type="submit" class="btn btn-primary btn-lg" value= "Actualizar Componente"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<%- include('layouts/footer') %>
