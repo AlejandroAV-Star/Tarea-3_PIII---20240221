@@ -1,0 +1,42 @@
+<%- include('layouts/header') %> 
+
+    <div class = "container px-5 my-5"> 
+        <div class = "row"> 
+            <div class = "col-md-3"></div> 
+                <div class = "col-md-6"> 
+                    <h1 class = "text-center text-black mb-4">Agregar Componente</h1> 
+                <form id = "add-form" action="/add" method="POST" enctype="multipart/form-data"> 
+                    <div class="mb-3"> 
+                        <label class="form-label" for="name">Nombre</label> 
+                        <input class="form-control" id="name" name="name" type= "text" placeholder="Nombre"></input> 
+                    </div> 
+
+                    <div class="mb-3"> 
+                       <label class="form-label" for="description">Descripción</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Detalle del componente" required></textarea>
+                    </div> 
+
+                    <div class="mb-3"> 
+                        <label class="form-label" for="amount">Cantidad</label> 
+                        <input class="form-control" id="amount" name="amount" type="number" min="0" placeholder="1" required></input> 
+                    </div>
+                    
+                    <div class="mb-3"> 
+                        <label class="form-label" for="price">Precio</label> 
+                        <input class="form-control" id="price" name="price" type="number" step="0.01" min="0" placeholder="0.00" required></input>
+                    </div>
+
+                    <div class="mb-3"> 
+                        <label for="image" class="form-label">Imagen</label> 
+                        <input name="image" class="form-control" type="file" required></input> 
+                    </div>
+
+                    <div class="d-grid"> 
+                        <input type="submit" class="btn btn-primary btn-lg" value= "Agregar Componente"></input> 
+                    </div> 
+                </form> 
+            </div> 
+        </div> 
+    </div> 
+
+<%- include('layouts/footer') %>
