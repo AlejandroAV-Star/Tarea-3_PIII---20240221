@@ -1,0 +1,48 @@
+<%- include('layouts/header') %>
+
+    <div class = "container">
+        <div class = "row my-4">
+            <div class = "col-lg-12">
+                <% if (session) { %>
+                    <div class="alert alert-dismissible fade show alert-<%= session.type %>" role="alert">
+                        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+                        <strong><%= session.message %></strong>
+                    </div>
+                <% } %>
+
+                <div class = "table-responsive">
+                    <table class = "table table-striped text-center">
+                        <thead>
+                            <tr class = "table-dark">
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% component.forEach((component, index) => { %>
+                            <tr>
+                                <td><%= ++index %></td>
+                                <td><%= component.name %></td>
+                                <td><%= component.description %></td>
+                                <td><%= component.amount %></td>
+                                <td>$<%= component.price.toFixed(2) %></td>
+                                <td><img src="/<%= component.image %>" width="50" class="img-thumbnail"></td>
+                                <td>
+                                    <a href = "/edit/<%= component._id %>"><i class="fa fa-edit fa-lg"></i></a>
+                                    <a href = "/delete/<%= component._id %>"><i class="fa fa-trash fa-lg"></i></a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('layouts/footer') %>
