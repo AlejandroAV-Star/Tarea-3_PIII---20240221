@@ -20,16 +20,18 @@ var upload = multer({ storage: storage }).single('image');
 
 router.get('/', async (req, res) => {
     try {
-        const component = await Component.find();
+        const search = req.query.search || "";
+
+        const component = await Component.find({
+            name: { $regex: search, $options: "i" }
+        });
 
         res.render('index', {
             titulo: 'Inicio',
             component
         });
     } catch (error) {
-        res.json({
-            message: error.message
-        });
+        res.json({ message: error.message });
     }
 });
 
