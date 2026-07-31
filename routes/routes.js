@@ -18,6 +18,21 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('image');
 
+router.get('/', async (req, res) => {
+    try {
+        const component = await Component.find();
+
+        res.render('index', {
+            titulo: 'Inicio',
+            component
+        });
+    } catch (error) {
+        res.json({
+            message: error.message
+        });
+    }
+});
+
 router.get('/add', (req, res) => {
     res.render('addcomponent', { titulo: 'Agregar Componente' });
 });
