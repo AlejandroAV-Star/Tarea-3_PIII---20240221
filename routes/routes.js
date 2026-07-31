@@ -115,4 +115,32 @@ router.post('/update/:id', upload, async (req, res) => {
     }
 });
 
+router.get('/delete/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const component = await Component.findByIdAndDelete(id);
+
+        if(component != null && component.image != '') {
+            try {
+                fs.unlinkSync('./upload/' + component.image);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        req.session.message = {
+            message: 'Componente eliminado exitosamente',
+            type: 'info'
+        };
+        res.redirect('/');
+    }
+    catch (error) {
+        res.json({
+            message: error.message, 
+            type: 'danger' 
+        });
+    }
+})
+
 module.exports = router;
